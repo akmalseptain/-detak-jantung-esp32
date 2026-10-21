@@ -42,7 +42,7 @@ const bool   MODE_SIMULASI    = true;   // false saat pakai sensor asli
 const int    SIM_BPM          = 72;     // BPM tiruan untuk simulasi Wokwi
 const int    BPM_MIN          = 60;     // batas normal bawah
 const int    BPM_MAX          = 100;    // batas normal atas
-const float  FIRMWARE_VERSION = 1.1;    // dibandingkan dengan tag release GitHub
+const float  FIRMWARE_VERSION = 1.2;    // dibandingkan dengan tag release GitHub
 
 const uint8_t DURASI_DETIK = 6;         // jendela pengukuran (detik)
 
@@ -191,8 +191,10 @@ void cekOTA() {
   String isi = http.getString();
   http.end();
 
-  // ambil tag versi, contoh: "tag_name":"v1.1"
-  float versiBaru = ambilNilaiJson(isi, "\"tag_name\":\"v\"").toFloat();
+  // ambil tag versi, contoh: "tag_name":"v1.2"
+  String tag = ambilNilaiJson(isi, "\"tag_name\":\"");
+  if (tag.startsWith("v")) tag.remove(0, 1);
+  float versiBaru = tag.toFloat();
   if (versiBaru <= FIRMWARE_VERSION) {
     Serial.printf("[OTA] Firmware v%.1f masih terbaru\n", FIRMWARE_VERSION);
     return;
