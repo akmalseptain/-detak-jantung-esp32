@@ -165,6 +165,17 @@ set `MODE_SIMULASI = false`.
 - Setiap tag baru `v*` (contoh: `git tag v1.2 && git push --tags`):
   GitHub Actions membuat **Release** berisi `firmware.bin`.
 
+Bukti pipeline (screenshot asli + penjelasan) ada di
+[`dokumentasi/github/`](dokumentasi/github/README.md):
+
+| Repository | Actions |
+|---|---|
+| <img src="dokumentasi/github/repo.png" width="420"> | <img src="dokumentasi/github/actions.png" width="420"> |
+
+| Release v1.2 | Log build (run #8) |
+|---|---|
+| <img src="dokumentasi/github/release.png" width="420"> | <img src="dokumentasi/github/run.png" width="420"> |
+
 ## 4. Cara kerja OTA di perangkat
 
 1. Firmware memanggil GitHub API `releases/latest` (sekali per 6 jam).
